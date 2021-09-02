@@ -5,6 +5,7 @@ IMAGE = fluentd-coralogix-image
 TAG ?= $(or ${VERSION},${TRAVIS_TAG},1.0.0)
 
 build:
+	docker --version
 	docker build \
 		--tag $(PREFIX)/$(IMAGE):latest \
 		--tag $(PREFIX)/$(IMAGE):$(TAG) \
