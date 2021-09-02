@@ -12,6 +12,7 @@ jobs:
   include:
     - stage: build docker image
       install: skip
+      before_install: sudo apt-get install -y docker-ce
       script: make build
     - stage: test docker image
       install: skip
