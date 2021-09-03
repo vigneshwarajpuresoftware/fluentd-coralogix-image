@@ -1,19 +1,10 @@
 .PHONY:	publish
 
-PREFIX = coralogixrepo
-IMAGE = fluentd-coralogix-image
+PREFIX = ajv21
+IMAGE = fluentd-coralogix-image-latest
 TAG ?= $(or ${VERSION},${TRAVIS_TAG},1.0.0)
 
 build:
 	docker --version
-	docker build \
-		--tag $(PREFIX)/$(IMAGE):latest \
-		--tag $(PREFIX)/$(IMAGE):$(TAG) \
-		--build-arg VERSION=$(TAG) \
-		./$(IMAGE)
-
-push:
-	docker push $(PREFIX)/$(IMAGE):latest
-	docker push $(PREFIX)/$(IMAGE):$(TAG)
-
-publish: build push
+	docker buildx build create --name samplekit
+	docker buildx rm samplekit
